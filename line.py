@@ -97,7 +97,7 @@ def message_text(event):
     for chunk in content.iter_content():
         data += chunk
 
-    data = base64.b64encode(s.encode('utf-8'))
+    data = base64.b64encode(data)
     print(data)
     
 
