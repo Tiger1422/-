@@ -26,7 +26,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage, FileMessage
 )
 
 app = Flask(__name__)
@@ -81,6 +81,7 @@ def message_text(event):
                         headers={'Content-Type':'application/json'}
                         )
     result = response.json()
+
     hit=result['hit']
     if hit:
         line_bot_api.reply_message(
@@ -88,6 +89,19 @@ def message_text(event):
             TextSendMessage(text="このメッセージは危険な可能性があります" )
         )
 
+@handler.add(MessageEvent, message=FileMessage)
+def message_text(event):
+    message_id = event.message.id
+
+    data = b''
+    content = line_bot_api.get_message_content(message_id)
+
+    for chunk in content.iter_content():
+	data += chunk
+
+    data = base64.b64encode(s.encode('utf-8'))
+    print(data)
+    
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
