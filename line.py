@@ -12,9 +12,7 @@
 #  License for the specific language governing permissions and limitations
 #  under the License.
 
-import os
-import sys
-import json
+import os, sys, json, base64
 import requests
 from argparse import ArgumentParser
 
