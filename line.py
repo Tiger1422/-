@@ -97,7 +97,7 @@ def message_text(event):
     content = line_bot_api.get_message_content(message_id)
 
     for chunk in content.iter_content():
-	data += chunk
+        data += chunk
 
     data = base64.b64encode(s.encode('utf-8'))
     print(data)
