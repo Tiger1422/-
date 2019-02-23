@@ -98,6 +98,7 @@ def message_text(event):
         data += chunk
 
     data = base64.b64encode(data)
+    data = data.decode('utf-8')
 
     payload = {
                 "type":"file",
