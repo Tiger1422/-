@@ -98,7 +98,27 @@ def message_text(event):
         data += chunk
 
     data = base64.b64encode(data)
-    print(data)
+
+    payload = {
+                "type":"file",
+                "data":data,
+                "name":"momo",
+                "service":"LINE"
+        }
+    response = requests.post(
+                        'http://ik1-315-17678.vs.sakura.ne.jp/post',
+                        json.dumps(payload),
+                        headers={'Content-Type':'application/json'}
+                        )
+    result = response.json()
+
+    hit=result['hit']
+    if hit:
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="このメッセージは危険な可能性があります" )
+    
+    
     
 
 if __name__ == "__main__":
