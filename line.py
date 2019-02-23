@@ -117,9 +117,7 @@ def message_text(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text="このメッセージは危険な可能性があります" )
-    
-    
-    
+	)
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
