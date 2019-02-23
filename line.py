@@ -88,7 +88,7 @@ def message_text(event):
         )
 
 @handler.add(MessageEvent, message=FileMessage)
-def message_text(event):
+def message_file(event):
     message_id = event.message.id
 
     data = b''
@@ -99,6 +99,7 @@ def message_text(event):
 
     data = base64.b64encode(data)
     data = data.decode('utf-8')
+    print(data)
 
     payload = {
                 "type":"file",
